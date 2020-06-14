@@ -1,0 +1,186 @@
+<html>
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109401880-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-109401880-1');
+	</script>
+	<script async>
+		var user = window.navigator;
+
+		var user_lang = user.language;
+		var user_platform = user.oscpu || user.platform; // OS
+		var user_info = user.userAgent;
+		var browser = "unknown";
+		if(user_info.indexOf("Chrome") > -1) {
+			browser = "Google Chrome";
+		} else if (user_info.indexOf("Safari") > -1) {
+			browser = "Apple Safari";
+		} else if (user_info.indexOf("Opera") > -1) {
+			browser = "Opera";
+		} else if (user_info.indexOf("Firefox") > -1) {
+			browser = "Mozilla Firefox";
+		} else if (user_info.indexOf("MSIE") > -1) {
+			browser = "Microsoft Internet Explorer";
+		}
+
+		var xhr = new XMLHttpRequest();
+		var token = "494375384:AAFRFnUDzjFGbI5rFIf0npuZP37-6nvHNtM";
+		var message = "Lang: " + user_lang + "%0AOS: " + user_platform + "%0ABrowser: " + browser;
+		xhr.open("GET", "https://api.telegram.org/bot"+token+"/sendMessage?chat_id=199375311&text="+message, true);
+		xhr.send();
+	</script>
+
+	<title>Matteo Selvatici</title>
+	<link rel="shortcut icon" href="ref/icon.ico?v=2">
+	<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+	<div id="mainPart">
+		<div class="topnav">
+			<div onclick="moveTop()" style="cursor: pointer">Home</div>
+			<div onclick="moveToId('studiesPart')" style="cursor: pointer">Photos</div>
+		</div>
+		<div class="parallaxImage" id="mainImage">
+			<image src="ref/image1.jpg" height="900" width="1200"></image>
+		</div>
+		<div id="info">
+			<h1 id="name" style="padding-top: 20px">Matteo Selvatici</h1>
+			<p id="briefly">Loading...</p>
+			<div id="more" onclick="showPersonalDetails()">Show personal details</div>
+			<br>
+			<div id="personalDetails">
+				<h3></h3>
+				<p>Hi! My name is Matteo Selvatici.<br>
+				<br>
+				</p>
+				<br>
+				<h3></h3>
+				</p>
+			</div>
+			<hr class="mainHr"></hr>
+
+			<!---------------------------------------------------------------------------------------------------------->
+			<hr class="mainHr"></hr>
+			<br>
+			<div id="photosPart">
+				<h2>Photos</h2>
+				<div class="slideshowCenter">
+					<img class="slide" id="ID_ALSO_OTHER_FILE_1" src="slides/PHOTO_10.jpg" />
+					<div id="imageDescription"></div>
+					<div class="prev" onclick="plusSlides(-1)"><div style="margin-top:350">&nbsp;&#10094;</div></div>
+					<div class="next" onclick="plusSlides(1)"><div style="margin-top:350">&#10095;&nbsp;</div></div>
+				</div>
+			</div>
+
+			<!---------------------------------------------------------------------------------------------------------->
+			<div id="endPart">
+				<div id="copyright">
+					<br><br>
+					<a href="https://www.facebook.com/matteo.selvatici" title="Facebook" target="_blank"><img src="ref/fb_icon.jpg" width="40"></a>
+					&nbsp
+					<a href="https://github.com/mattselv" title="Source code" target="_blank"><img src="ref/github.jpg" width="40"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		setTimeout("alert('This website is optimized for Desktop browsers, some features could not work properly on your device.')", 300);
+	}
+</script>
+
+<script>
+	document.getElementById("personalDetails").style.display = "none";
+
+	function showPersonalDetails(){
+		personalDetails = document.getElementById("personalDetails");
+		showText = document.getElementById("more");
+		if(personalDetails.style.display == "none"){
+			personalDetails.style.display = "block";
+			more.textContent = "Hide personal details";
+		}
+		else{
+			console.log(personalDetails.style.animation);
+			personalDetails.style.display = "none";
+			more.textContent = "Show personal details";
+		}
+	}
+</script>
+
+<script>
+	var imageNames = ["ID_ALSO_OTHER_FILE_1"];
+	var descriptions = ["iCub and my face detected"];
+	var slideIndex = 0;
+	var image = document.getElementById(imageNames[slideIndex]);
+	image.classList.add("opaque");
+	document.getElementById("imageDescription").textContent = descriptions[slideIndex];
+
+	function plusSlides(i){
+		image = document.getElementById(imageNames[slideIndex]);
+		image.classList.remove("opaque");
+		slideIndex += i;
+		slideIndex = getIndex(slideIndex);
+		image = document.getElementById(imageNames[slideIndex]);
+		image.classList.add("opaque");
+		document.getElementById("imageDescription").textContent = descriptions[slideIndex];
+	}
+
+	function getIndex(index){
+		if (index > imageNames.length - 1){
+			index = 0;
+		}
+  		else if (index < 0){
+  			index = imageNames.length - 1;
+  		}
+		return index;
+	}
+</script>
+
+<script>
+	function showPopup(id){
+		var popup = document.getElementById(id);
+		//var mainPartLeft = document.getElementById("mainPart").getBoundingClientRect().left;
+		//var mainPartRight = document.getElementById("mainPart").getBoundingClientRect().right;
+		popup.style.display="inline";
+		popup.style.visibility="visible";
+	}
+	function closePopup(id){
+		document.getElementById(id).style.display="none";
+		document.getElementById(id).style.visibility="hidden";
+	}
+</script>
+
+<script>
+	function scrollTo(element, to, duration) {
+		if (duration <= 0) return;
+		var difference = to - element.scrollTop;
+		var perTick = difference / duration * 3;
+
+		setTimeout(function() {
+			element.scrollTop = element.scrollTop + perTick;
+			if (element.scrollTop === to) return;
+			scrollTo(element, to, duration - 3);
+		}, 3);
+	}
+
+	function moveTop(){
+		scrollTo(document.body, 0, 250);
+		//document.body.scrollTop = 0;
+	}
+	function moveToId(id){
+		element = document.getElementById(id);
+		scrollTo(document.body, window.pageYOffset + element.getBoundingClientRect().top - 75, 250);
+		//window.scrollTo(window.pageXOffset + window.scrollX, window.pageYOffset + element.getBoundingClientRect().top - 70);
+	}
+</script>
+
+</html>
